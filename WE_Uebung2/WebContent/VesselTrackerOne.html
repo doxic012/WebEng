@@ -7,14 +7,50 @@
 <body>
 	<h1>Welcome to the AIS Vessel Tracker hompage</h1>
 	The AIS vessel tracker homepage supplies you with near real time vessel position information<br />
-	
+
 	<h1>Search for a vessel</h1>
+    <input maxlength="100px" /><button onclick="">Search</button><br />
 	Use this form to search a vessel by name as http "POST"
-	
+
 	Use this form to search a vessel by Latitude and Longitude as http "GET" <br /><br />
-	Latitude (Breitengrad) <br />
-	Longitude (L�ngengrad) <br />
-	
-	
+	Latitude (Breitengrad) <input maxlength="100px" /><br />
+	Longitude (Längengrad) <input maxlength="100px" /><br />
+    <button onclick="">Search</button><br /><br />
+
+    <h1>List of vesselns in scene:</h1><br />
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th colspan="2">Vessel Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="logo.png" /></td>
+                <td>Penelope</td>
+            </tr>
+            <tr>
+                <td rowspan="2">Position</td>
+                <td>Latitude</td>
+                <td>50° 44' N</td>
+            </tr>
+            <tr>
+                <td>Longitude</td>
+                <td>7° 6' E</td>
+            </tr>
+            <tr>
+                <td>Speed</td>
+                <td colspan="2">10 km</td>
+            </tr>
+            <tr>
+                <td>Direction</td>
+                <td colspan="2">Rotterdam</td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    Real AIS Vessel Tracker System: <a href="http://www.vesselfinder.com/">http://www.vesselfinder.com/</a>
+
 </body>
 </html>
