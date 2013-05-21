@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script type="text/javascript" src="./js/aisData.js"></script>
+	<script type="text/javascript" src="./js/ais.js"></script>
+    <script type="text/javascript" src="./js/test.js"></script>
+
+    <title></title>
+</head>
+<body>
+    <canvas id="canvas" height="800" width="766">Canvas not Supported</canvas>
+    
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas').getContext("2d");
+		var map = new Image();
+		map.src = 'images/map.png';
+		canvas.drawImage(map, 1, 1);
+		
+		
+		AIS.drawAllShips(canvas);
+	</script>
+</body>
+</html>
