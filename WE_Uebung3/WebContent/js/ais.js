@@ -134,7 +134,7 @@ var AIS = (function() {
 		colorIterator : colorIterator
 	};
 
-})();
+})(); 
 
 document.addEventListener("DOMContentLoaded", function() {
 	// Aufgabe 5
