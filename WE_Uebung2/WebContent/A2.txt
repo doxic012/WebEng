@@ -1,0 +1,29 @@
+Aufgabe 2
+
+Laden der Seite 
+
+Normal
+- Lädt nur Logo.png und VesselTrackerOne.html als Text
+
+Search Vessel by Name
+- Selbes wie Normal, nur dass VesselTrackerOne.html per Methode POST übertragen wurde.
+
+Search vessel by Latitude and Longitude
+- Lädt Logo per GET und http://localhost:8080/WE_Uebung2/VesselTrackerOne.html?lat=test&long=test2
+mitmit lat und long als übergabeparameter
+
+Netzwerkparameter
+ 1:  2 GET-Anfragen werden gestellt: Vesseltrackerone.html und logo.png
+ 2:  
+  Methode	Content Type	Content-Length
+  POST		text/html		1946
+  GET		image/png		32505
+ 
+ Übertragungsdaten: "getname: testtest"
+ 
+ 3:  
+  Methode	Content Type	Content-Length
+  GET		text/html		1946
+  GET		image/png		32505
+  
+  Übertragungsdaten: lat: 123, long: 456
