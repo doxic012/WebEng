@@ -17,18 +17,12 @@ var AIS = (function() {
 	var shipHeight = 20;
 	var shipWidth = 5;
 	
-	var longitudeToX = function(longitude, width) {
-		if(width == null)
-			width = AIS.width;
-		
-		return (int) ((width / 360.0) * (180 + longitude));	
+	var longitudeToX = function(longitude, width) {		
+		return (Number) ((this.width / 360.0) * (180 + longitude));	
 	};
 	
 	var latitudeToY = function(latitude, height) {
-		if(height == null)
-			height = AIS.height;
-		
-		return (int) ((height / 180.0) * (90 + latitude));	
+		return (Number) ((this.height / 180.0) * (90 + latitude));	
 	};	
 	
 	// Color iterator
@@ -54,20 +48,36 @@ var AIS = (function() {
 
 	Ship.prototype.draw = function(canvas, color) {
 		// Aufgabe 6
-		var ctx = canvas.getContext('2d');
-		int baseX = longitudeToX(this.longitude);
-		int baseY = latitudeToY(this.latitude);
-		int x,y;
-		ctx.beginPath();
-		// ctx.moveTo(x, y);
 		
+		var ctx = canvas.getContext('2d');
+		var x = longitudeToX(this.longitude, width) - shipWidth / 2.0; // lower left x
+		var y = latitudeToY(this.latitude, height) + shipHeight / 2.0; // lower left y	
+		
+		
+		// path begin
+		ctx.beginPath();
+
 		// move to lower left corner
-		ctx.moveTo((x = baseX - shipWidth / 2.0), (y = baseY - shipHeight / 2.0));
-		ctx.lineTo(x, y+=shipHeight);
+		ctx.moveTo(x, y);
+		
+		// left side
+		ctx.lineTo(x, y - shipHeight * (2.0/3.0)); // left side: + 2/3 height
+
+		// head
+		ctx.lineTo(x + shipWidth / 2.0, y - shipHeight); // middle: + 1/3 height, + 1/2 width
+		ctx.lineTo(x + shipWidth, y - shipHeight * (2.0/3.0)); //right side: - 1/3 height, + 1/2 width
+		
+		//right side
+		ctx.lineTo(x + shipWidth, y);
+		
+		// from right to left
+		ctx.lineTo(x, y);
+		
+		ctx.stroke();
 		
 		// |
-		// .
-		// /|\
+		//   .
+		//  /|\
 		// / | \ ___2/3
 		// | | |
 		// --|--.--| ------
@@ -86,11 +96,11 @@ var AIS = (function() {
 
 	// Aufgabe 4
 	ShipList.prototype.filter = function(filterFunction) {
-		// Erstellt ein neues, leeres Array und fügt nur die validen Objekte,
+		// Erstellt ein neues, leeres Array und fï¿½gt nur die validen Objekte,
 		// welche
-		// durch die filterFunction geprüft werden, der neuen Liste hinzu
+		// durch die filterFunction geprï¿½ft werden, der neuen Liste hinzu
 		var newList = [];
-		for ( var i in this.list) {
+		for (var i in this.list) {
 			if (filterFunction(this.list[i]))
 				newList.push(this.list[i]);
 		}
@@ -123,8 +133,7 @@ var AIS = (function() {
 		for ( var i = 0; i < currentShips.list.length; i++) {
 			var ship = currentShips.list[i];
 			ship.draw(canvas, colors());
-		}
-		;
+		};
 	};
 
 	return {
@@ -146,8 +155,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		// Zeichnen sie zuerst die Karte (images/map.png) auf das canvas.
 		// Anschliessend, lassen Sie alle Schiffe auf die Karte zeichnen:
 		// AIS.drawAllShips(canvas);.
-		AIS.drawAllShips(canvas);
+		
 	};
-	img.src = 'images/map.png';
-
+	//img.src = 'images/map.png';
+	AIS.drawAllShips(canvas);
 }, false);
