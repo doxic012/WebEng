@@ -8,4 +8,5 @@ public final class HtmlConfig {
 	public static final String HTML_TRACKER = "tracker.html";
 
 	public static final String REDIR_LOGIN = "/login";
+	public static final String REDIR_TRACKER = "/tracker";
 }
