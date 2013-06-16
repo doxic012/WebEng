@@ -17,12 +17,12 @@ var AIS = (function() {
 	var shipHeight = 20;
 	var shipWidth = 5;
 	
-	var longitudeToX = function(longitude, width) {		
-		return (Number) ((this.width / 360.0) * (180 + longitude));	
+	var longitudeToX = function(longitude) {	
+		return (longitude - left) / (right - left) * width;//Number((width / 360.0) * (180 + longitude));	
 	};
 	
-	var latitudeToY = function(latitude, height) {
-		return (Number) ((this.height / 180.0) * (90 + latitude));	
+	var latitudeToY = function(latitude) {
+		return (top - latitude) / (top - bottom) * height;//Number((height / 180.0) * (90 + latitude));
 	};	
 	
 	// Color iterator
@@ -50,9 +50,15 @@ var AIS = (function() {
 		// Aufgabe 6
 		
 		var ctx = canvas.getContext('2d');
-		var x = longitudeToX(this.longitude, width) - shipWidth / 2.0; // lower left x
-		var y = latitudeToY(this.latitude, height) + shipHeight / 2.0; // lower left y	
+		var x = longitudeToX(this.longitude) - shipWidth / 2.0; // lower left x
+		var y = latitudeToY(this.latitude) + shipHeight / 2.0; // lower left y	
 		
+		console.log("drawing ship: "+x+", "+y+" - "+color);
+		ctx.save();
+
+		// filling style
+		ctx.fillStyle = color;
+		//ctx.rotate((this.courseOverGround )*Math.PI / 180);
 		
 		// path begin
 		ctx.beginPath();
@@ -73,8 +79,10 @@ var AIS = (function() {
 		// from right to left
 		ctx.lineTo(x, y);
 		
-		ctx.stroke();
-		
+		ctx.fill();
+		//ctx.stroke();
+		//ctx.closePath();
+		ctx.restore();
 		// |
 		//   .
 		//  /|\
@@ -154,9 +162,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		// Zeichnen sie zuerst die Karte (images/map.png) auf das canvas.
 		// Anschliessend, lassen Sie alle Schiffe auf die Karte zeichnen:
-		// AIS.drawAllShips(canvas);.
-		
+		AIS.drawAllShips(canvas);		
 	};
-	//img.src = 'images/map.png';
-	AIS.drawAllShips(canvas);
+	img.src = 'images/map.png';
 }, false);
