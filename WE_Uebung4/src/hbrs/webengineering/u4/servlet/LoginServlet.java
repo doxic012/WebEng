@@ -1,11 +1,8 @@
 package hbrs.webengineering.u4.servlet;
 
-import hbrs.webengineering.u4.general.HtmlConfig;
+import hbrs.webengineering.u4.config.HtmlConfig;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,21 +29,16 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute(HtmlConfig.AUTHENTICATED, new Boolean(false));
 		}
 			
-//		boolean auth = (boolean) session.getAttribute(HtmlConfig.AUTHENTICATED);
 		String pass = req.getParameter(HtmlConfig.PASSPHRASE);
-	
 		
-		String uri = req.getRequestURI();
-		System.out.println("Req uri:" +uri);
-
 		// Passphrase stimmt oder bereits authentifiziert
 		if(pass.equals(passPhrase)){
 			session.setAttribute(HtmlConfig.AUTHENTICATED, new Boolean(true));
-			resp.sendRedirect("/tracker.html");
+			resp.sendRedirect("./"+HtmlConfig.HTML_TRACKER);
 		}
 		else {
 			session.setAttribute(HtmlConfig.AUTHENTICATED, new Boolean(false));			
-			resp.sendRedirect("/login.html");
+			resp.sendRedirect("./"+HtmlConfig.HTML_LOGIN);
 		}
 		
 	}

@@ -1,6 +1,6 @@
 package hbrs.webengineering.u4.filter;
 
-import hbrs.webengineering.u4.general.HtmlConfig;
+import hbrs.webengineering.u4.config.HtmlConfig;
 
 import java.io.IOException;
 
@@ -30,13 +30,15 @@ public class AuthFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) resp;
 		HttpSession session = httpRequest.getSession(false);
 
+		String UriFilter = httpRequest.getRequestURI();
+		
+		
 		// Session existiert bereits und User ist eingeloggt
-		if (session != null && (boolean) session.getAttribute(HtmlConfig.AUTHENTICATED)) {
-			// filtern und fortsetzen
-			chain.doFilter(req, resp); 
+		if (UriFilter.contains(HtmlConfig.REDIR_LOGIN) || (session != null && (boolean) session.getAttribute(HtmlConfig.AUTHENTICATED))) {
+			chain.doFilter(req, resp);
 		} else {
 			// redirect nach login.html
-			httpResponse.sendRedirect("/login.html"); 
+			httpResponse.sendRedirect("./"+HtmlConfig.HTML_LOGIN);
 		}
 	}
 
