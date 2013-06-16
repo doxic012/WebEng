@@ -2,6 +2,7 @@
 
 .vt_main {
 	width: 80%;
+	min-width: 550px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #D8F4E1;
