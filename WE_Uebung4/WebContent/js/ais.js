@@ -120,6 +120,7 @@ var AIS = (function() {
 		// neue ShipList erstellen
 		var currentShips = new AIS.ShipList();
 
+		
 		// fuer jeden Datensatz, ein Ship erstellen und in die ShipList legen
 		for ( var i = 0; i < AISData.length; i++) {
 			currentShips.list.push(new AIS.Ship(AISData[i].mmsi,
@@ -165,4 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		AIS.drawAllShips(canvas);
 	};
 	img.src = 'images/map.png';
+	
+	setInterval(AIS.drawAllShips(canvas), 15000);
+	
 }, false);

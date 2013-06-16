@@ -18,9 +18,7 @@ public class LoginServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		//super.doPost(req, resp);
-		
+			throws ServletException, IOException {		
 		// Http-Session with login_password
 		HttpSession session = req.getSession(true);
 		
