@@ -120,12 +120,20 @@ var AIS = (function() {
 		// neue ShipList erstellen
 		var currentShips = new AIS.ShipList();
 
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", "/WE_Uebung4/ships", false);
+		xmlhttp.send();
 		
-		// fuer jeden Datensatz, ein Ship erstellen und in die ShipList legen
-		for ( var i = 0; i < AISData.length; i++) {
-			currentShips.list.push(new AIS.Ship(AISData[i].mmsi,
-					AISData[i].latitude, AISData[i].longitude,
-					AISData[i].courseOverGround));
+		var response = xmlhttp.responseText;
+		console.log("xmlhttp response: "+response);
+		// Uebung 4.5: AISData reset
+	    var shipData = JSON.parse(response);
+
+	     // fuer jeden Datensatz, ein Ship erstellen und in die ShipList legen
+		for ( var i = 0; i < shipData.length; i++) {
+			currentShips.list.push(new AIS.Ship(shipData[i].mmsi,
+					shipData[i].latitude, shipData[i].longitude,
+					shipData[i].courseOverGround));
 		}
 
 		// Filtern der Schiffe, die sich nicht auf dem Kartenausschnitt befinden
@@ -167,6 +175,12 @@ document.addEventListener("DOMContentLoaded", function() {
 	};
 	img.src = 'images/map.png';
 	
-	setInterval(AIS.drawAllShips(canvas), 15000);
+	// map drawAllShips into a new function, because it gets called when given a parameter
+	setInterval(function() {
+		 // clear previous drawn ships
+		 canvas.getContext('2d').clearRect(0,0,AIS.width, AIS.height)
+		 canvas.getContext('2d').drawImage(img,0,0);
+		 AIS.drawAllShips(canvas);
+	}, 15000);
 	
 }, false);
