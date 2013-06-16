@@ -13,8 +13,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="lib/aismessages-1.00-selfcompiled.jar"/>
-	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="lib/ShipReceiver.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aismessages-1.00-selfcompiled.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ShipReceiver.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
