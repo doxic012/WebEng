@@ -32,11 +32,11 @@ public class LoginServlet extends HttpServlet {
 		// Passphrase stimmt oder bereits authentifiziert
 		if(pass.equals(passPhrase)){
 			session.setAttribute(HtmlConfig.AUTHENTICATED, new Boolean(true));
-			resp.sendRedirect("."+HtmlConfig.REDIR_TRACKER);
+			resp.sendRedirect(HtmlConfig.redirect(HtmlConfig.REDIR_TRACKER));
 		}
 		else {
 			session.setAttribute(HtmlConfig.AUTHENTICATED, new Boolean(false));			
-			resp.sendRedirect("."+HtmlConfig.REDIR_LOGIN);
+			resp.sendRedirect(HtmlConfig.redirect(HtmlConfig.REDIR_LOGIN));
 		}
 		
 	}

@@ -38,7 +38,7 @@ public class AuthFilter implements Filter {
 			chain.doFilter(req, resp);
 		} else {
 			// redirect nach login.html
-			httpResponse.sendRedirect("./"+HtmlConfig.HTML_LOGIN);
+			httpResponse.sendRedirect(HtmlConfig.redirect(HtmlConfig.REDIR_LOGIN));
 		}
 	}
 
