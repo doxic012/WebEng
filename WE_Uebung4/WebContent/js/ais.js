@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// map drawAllShips into a new function, because it gets called when given a parameter
 	setInterval(function() {
 		 // clear previous drawn ships
-		 canvas.getContext('2d').clearRect(0,0,AIS.width, AIS.height)
+		 canvas.getContext('2d').clearRect(0,0,AIS.width, AIS.height);
 		 canvas.getContext('2d').drawImage(img,0,0);
 		 AIS.drawAllShips(canvas);
 	}, 15000);
